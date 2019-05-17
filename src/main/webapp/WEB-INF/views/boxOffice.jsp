@@ -13,7 +13,7 @@
 	<div class="layerPopOpen" id="layerPopOpen"></div>
 	<div class="mask" id="mask"></div>
 	<input type="hidden" id="maskVal" name="maskVal" />
-	<%@include file="top.jsp"%>
+	<%@include file="cmn/top.jsp"%>
 	<div class="contentWrap">
 		<div class="movie_container" id="container">
 			<div class="full_wrap">
@@ -31,6 +31,8 @@
 			</div>
 		</div>
 	</div>
-	<%@include file="footer.jsp"%>
+	<!-- 로딩바 및 이미지 -->
+	<%@include file="cmn/progress_loading.jsp"%>
+	<%@include file="cmn/footer.jsp"%>
 </body>
 </html>

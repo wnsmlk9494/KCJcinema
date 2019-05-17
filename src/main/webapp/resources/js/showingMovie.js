@@ -1,4 +1,5 @@
 var hidden_morePage = "1";
+
 //더보기 선택시 id="span_fillStar"+번호값 추가로 늘어나게 저장
 var start_span_fillStar = 0;
 

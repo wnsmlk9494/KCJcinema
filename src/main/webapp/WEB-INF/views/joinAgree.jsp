@@ -11,7 +11,7 @@
 <title>회원가입 : 약관 동의</title>
 </head>
 <body>
-	<%@include file="top.jsp"%>
+	<%@include file="cmn/top.jsp"%>
 	<div class="bodyWrap">
 		<div class="contentsWrap">
 			<div class="contents">
@@ -73,6 +73,8 @@
 			</div>
 		</div>
 	</div>
-	<%@include file="footer.jsp"%>
+	<!-- 로딩바 및 이미지 -->
+	<%@include file="cmn/progress_loading.jsp"%>
+	<%@include file="cmn/footer.jsp"%>
 </body>
 </html>

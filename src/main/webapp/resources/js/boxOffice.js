@@ -1,11 +1,6 @@
 var hidden_morePage = "1";
 
-//더보기 선택시 id="span_fillStar"+번호값 추가로 늘어나게 저장
-//var hidden_span_fillStar = 1;
-
-//더보기 선택시 id="p_dday"+번호값 추가로 늘어나게 저장
-//var hidden_p_dday = 1;
-
+//더보기 선택시 id="seq"+번호값 추가로 늘어나게 저장
 var hidden_seq = 1; 
 
 //D-day 표시를 위한 오늘 '년월일' 계산
