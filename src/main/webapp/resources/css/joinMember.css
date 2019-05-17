@@ -1,0 +1,130 @@
+@charset "utf-8";
+/************************************************************************
+ * filename : joinMember.css
+ * description : 회원가입 (joinAgree.jsp / joinForm.jsp / joinSuccess.jsp) CSS
+ * date : 2019.01.04
+************************************************************************/
+
+/* 공통 */
+media all body, input, textarea, select, button, table{color:#555; line-height:24px; font-size:14px;}
+.bodyWrap {width:100%; position:relative;}
+.bodyWrap .contentsWrap .contents {position:relative; margin-left:15%; margin-right:15%; padding-bottom:80px;} 
+.bodyWrap .contentsWrap .contents .cont_header {text-align:left;margin-bottom:100px;} 
+.bodyWrap .contentsWrap .contents .cont_header p {margin-top:45px;}
+
+
+/* loginForm.jsp */
+.login_main:after, .arrow_box:before {
+	bottom: 100%;
+	right: 82px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.login_main:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-bottom-color: #000;
+	border-width: 30px;
+	margin-left: -30px;
+}
+.login_main:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-bottom-color: #c2e1f5;
+	border-width: 36px;
+	margin-left: -36px;
+}
+
+.cont_header p {margin-top:45px;}
+.login{position:absolute; top:58px; right:20px; width:370px; height:260px; box-shadow:0px 0px 10px rgba(0,0,0,0.2); border-radius:10px; background:#fff; z-index:1; text-align:center; border:4px solid #000; }
+.login_main {width:100%; height:205px; padding:30px 30px 0px 30px;}
+.login_main .login_wrap {width:100%; height:100%; overflow:hidden;}
+.login_main .login_wrap .part_first {width:100%; height:auto; color:#000; font-size:25px; font-weight:bold;}
+.login_main .login_wrap .part_second {width:100%; margin-top:30px; vertical-align: middle; display: inline-block; color:#888}
+.login_main .login_wrap .part_second .inputInfo {float:left; position:relative; height:100%; margin-left:38px;}
+.login_main .login_wrap .part_second .clickLogin {float:left; position:relative; height:100%;}
+.login_main .login_wrap .part_second .mberId {width:155px; vertical-align:top; display:block; height:30px; padding:0 15px; border:1px solid #ddd; color:#888; font-size:13px;}
+.login_main .login_wrap .part_second .mberPwd {width:155px; vertical-align:top; display:block; height:30px; padding:0 15px; margin-top:6px; border:1px solid #ddd; color:#888; font-size:13px;}
+.login_main .login_wrap .part_second .login_btn {background:#000; width:67px; height:67px; display:inline-block; text-align:center; line-height:62px; font-size:16px; border-radius:6px; color:#fff; float:left; margin-left:6px;}
+.login_main .login_wrap .part_third {width:100%; margin:13px 0 0 25px; vertical-align: middle; display: inline-block; color:#888; white-space:normal !important;}
+.login_main .login_wrap .part_third ul li {padding:0 10px !important; font-size:18px; float:left; text-align:center;}
+.login_main .login_wrap .part_third .li_joinMember {height:19px; border-right:1px solid #717171;}
+.login_main .login_wrap .part_third .li_findId {height:19px; border-right:1px solid #717171;}
+.login_main .login_wrap .part_third .li_findId {height:19px;}
+.login_main .login_wrap .part_third .otherwise {width:100%; height:25px; margin-top:28px;}
+.login_main .login_wrap .part_third .otherwise a {color:rgb(165, 42, 42);}
+.login_main .login_wrap .part_third .otherwise .li_findId {border-left:1px solid rgb(165, 42, 42); border-right:1px solid rgb(165, 42, 42);}
+.login_main .login_wrap .part_third .joinMember {margin-top:10px; vertical-align:middle; text-decoration:none;}
+.login_main .login_wrap .part_third .findId {margin-top:10px; vertical-align:middle; text-decoration:none;}
+.login_main .login_wrap .part_third .findPw {margin-top:10px; vertical-align:middle; text-decoration:none;}
+.login .part_empty {width:100%; height:49px; background:#000;}
+
+
+/* joinAgree.jsp, joinForm.jsp, joinSuccess 공통 */ 
+.cont_area .member_join .step_join {text-align:center;}
+.box_member {border-top-width:1px; position:relative; margin-top:60px; padding:50px; border-top:1px solid #222; background:#f8f8f8;}
+
+
+/* 회원가입 동의 - joinAgree.jsp */
+.cont_area .member_join .agreement_sec .box_member .h2_tit {margin:0; color:#222; font-weight:normal; font-size:24px;}
+.cont_area .member_join .agreement_sec .box_member .h2_tit .agreement_clause {padding-top:10px;}
+.cont_area .member_join .agreement_sec .box_member .agreement_clause .item_box_case {position:relative; margin-top:40px; padding-top:24px;}
+.cont_area .member_join .agreement_sec .box_member .agreement_clause .item_box_case .h5_tit {position:absolute; top:0px; left:0px; margin-top:0px; font-size:18px;}
+.cont_area .member_join .agreement_sec .box_member .agreement_clause .item_box_case .stxt {margin-top:10px; padding-left:10px; color:#555; font-size:12px; line-height:1.5;}
+.cont_area .member_join .agreement_sec .box_member .agreement_clause .item_box_case .clause_box {height:264px; margin-top:12px; padding:20px; border:1px solid #ddd; background:#fff; overflow:auto;}
+.table_agreement {width:100%; border:none; border-collapse:collapse; color:#555; font-size:14px; line-height:24px;}
+.table_agreement thead tr th {width:40%; text-align:center; border-top: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000; background-color:#f8f8f8; padding:23px 20px 21px 20px; border-bottom:1px solid #ddd; vertical-align:top; color:#222; font-weight:normal;}
+.table_agreement tbody tr td {border-left: 1px solid #000000;border-right: 1px solid #000000;border-bottom: 1px solid #000000; padding:3px; vertical-align:top; line-height:1.5;}
+.radio_agreement {margin-top:10px; text-align:right;}
+.radio_agreement .radio_btn {display:inline-block; position:relative; height:16px; padding-left:0; line-height:16px; zoom:1; margin-right:10px;}
+.radio_agreement .radio_btn input {color:#555; font-size:14px; line-height:24px; margin:0 3px 0 0;}
+.radio_agreement .radio_btncase input {color:#555; font-size:14px; line-height:24px; margin:0 3px 0 0;}
+.table_agreement .radio_btncase {margin-left:15px; display:inline-block; position:relative; height:16px; padding-left:0; line-height:16px; zoom:1;}
+.table_agreement .radio_btncase a {display:inline-block; width:16px; height:16px; background:url('/cjmweb/images/common/bg_form.png') no-repeat; vertical-align:middle; text-decoration:none;}
+.table_agreement .radio_btncase input {vertical-align:middle; color:#555; font-size:14px; line-heigth:24px;}
+.agreement_sec .btn_sec_col2 {margin-top:40px; text-align:center;}
+.agreement_sec .btn_sec_col2 .btn {border:1px solid #333; min-width:160px; height:40px; display:inline-block; margin:0 3px; *margin:0 5px; padding:0 15px; border-radius:3px; background-color:#fff; color:#333; text-align:center; line-height:38px; vertical-align:middle; cursor:pointer; transition:border .5s, background .5s, color .5s; overflow:visible; white-space:nowrap; font-size:14px;}
+.agreement_sec .btn_sec_col2 .btn_em {border:1px solid #333; background-color:#333 !important; color:#fff; min-width:160px; height:40px;   display:inline-block; margin:0 3px; *margin:0 5px; padding:0 15px; border-radius:3px; text-align:center; line-height:38px; vertical-align:middle; cursor:pointer; transition:border .5s, background .5s, color .5s; background:transparent; overflow:visible; white-space:nowrap; font-size:14px;}
+
+
+/* 회원가입 양식 - joinForm.jsp */
+.cont_area .member_join .step_join img{border:0 none; vertical-align:top;}
+.cont_area .member_join .member_data {margin-top:60px;}
+.cont_area .member_join .member_data h2{position:absolute; top:-99999px; font-weight:normal;}
+.cont_area .member_join .member_data .member_info .table_header {position:relative; padding-bottom:20px;}
+.cont_area .member_join .member_data .member_info .table_header h3{padding:0; margin:0; color:#222; font-weight:normal; font-size:22px;}
+.cont_area .member_join .member_data .member_info .table_header .info{position:absolute; bottom:20px; right:0px;}
+.cont_area .member_join .member_data .member_info .table_header .info p{background-position:0 6px; font-size:12px; padding-left:20px; background:url('/cjmweb/images/common/ico_mandatory.png') no-repeat 0 6px; margin:0; padding:0;}
+.cont_area .member_join .member_data .member_info .table_col {border-top:1px solid #222;}
+.cont_area .member_join .member_data .member_info .table_col table {width:100%; border:0 none; border-collapse:collapse;}
+.cont_area .member_join .member_data .member_info .table_col table tr th {padding-left:40px; background-color:#f8f8f8; color:#222; text-align:left;padding:23px 20px 21px 20px; border-bottom:1px solid #ddd;}
+.cont_area .member_join .member_data .member_info .table_col table tr label {vertical-align:middle;}
+.cont_area .member_join .member_data .member_info .table_col table tr td {padding:15px 20px; background-color:#fff; border-bottom:1px solid #ddd;}
+.cont_area .member_join .member_data .member_info .table_col table tr td .input_txt {display:inline-block; height:34px; vertical-align:middle; zoom:1;}
+.cont_area .member_join .member_data .member_info .table_col table tr td .input_txt .text {width:150px; vertical-align:top; display:block; height:100%; padding:0 15px; border:1px solid #ddd; color:#888; font-size:14px; line-height:32px;}
+.cont_area .member_join .member_data .member_info .table_col table tr td .input_txt .text.tel {width:63px;}
+.cont_area .member_join .member_data .member_info .table_col table tr td .btn_search{min-width:78px; height:34px; line-height:30px; background-color:#333; color:#fff; margin:0 3px; border:1px solid #333; border-radius:3px; text-align:center; vertical-align:middle; cursor:pointer; transition:border .5s, background .5s, color .5s; font-size:12px;}
+.cont_area .member_join .member_data .member_info .table_col table tr td .msg_desc {color:#888; font-size:12px; line-height:1.5;margin-top:10px;}
+.cont_area .member_join .member_data .member_info .table_col table tr td .select {height:34px; padding-top:1.5px; display:inline-block; padding:6px 5px 6px 5px; vertical-align:middle; border:1px solid #ddd;}
+.cont_area .member_join .member_data .member_info .table_col table tr td select {width:100%; border:0 none; margin:0; }	
+.btn_sec {margin-top:40px; text-align:center;}
+.btn_sec button {background:transparent; overflow:visible; white-space:nowrap;}
+.btn_sec .btn {border:1px solid #333; min-width:160px; height:40px; margin:0 3px; padding:0 15px; border-radius:3px; background-color:#fff; color:#333; text-align:center; line-height:38px; vertical-align:middle; cursor:pointer; transition:border .5s, background .5s, color .5s;}
+.btn_sec .btn_search {min-width:78px; height:34px; line-height:30px; background-color:#333; color:#fff;}
+.btn_sec .btn_em{background-color:#333; color:#fff;}
+
+
+/* 회원가입 성공 - joinSuccess.jsp */
+.bodyWrap .contentsWrap .contents {position:relative; margin-left:15%; margin-right:15%; padding-bottom:80px;} 
+.bodyWrap .contentsWrap .contents .cont_header {text-align:left;margin-bottom:100px;} 
+.bodyWrap .contentsWrap .contents .cont_header p {margin-top:45px;} 
+.cont_area .member_join .step_join {text-align:center;} 
+.cont_area .member_join .step_join img{border:0 none; vertical-align:top;}
+.cont_area .member_join .box_member .item_box {text-align:center;} 
+.cont_area .member_join .box_member .item_box .em {color:#ee6900; font-weight:normal;} 
+.btn_sec {margin-top:40px; text-align:center;} 
+.btn_sec .btn {border:1px solid #333; min-width:160px; height:40px; display:inline-block; padding:0 15px; border-radius:3px; background-color:#fff; color:#333; text-align:center; line-height:38px; vertical-align:middle; cursor:pointer; transition:border .5s, background .5s, color .5s;} 
+.btn_sec .btn_em {background-color:#333; color:#fff;}

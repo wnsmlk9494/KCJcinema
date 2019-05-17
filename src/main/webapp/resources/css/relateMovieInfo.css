@@ -1,0 +1,197 @@
+@charset "utf-8";
+/************************************************************************
+ * filename : relateMovieInfo.css
+ * description : home.jsp, movieDetailPop.jsp, movieBookPop.jsp
+ * date : 2019.04.27
+************************************************************************/
+/* 메인(home.jsp) */
+.mask {position:absolute; background-color:#000; display:none; left:0; top:0; z-index:2; background:rgba(0,0,0,0.8);}
+/* #boxOfficeList, #newMovieList, #comingSoonList {overflow:hidden;} */
+.sub_navi {background-color:#dad2b4;border-top:1px solid #e1e1e1; height:51px; margin-bottom:7px;}
+.sub_navi .sub_navi_wrap {position:relative;width:962px;margin:0 auto;height:50px;}
+.sub_navi .sub_navi_wrap ul li a {color:#000 !important;}
+.sub_navi ul li {position:relative; float:left; margin-right:45px; padding-top:16px;}
+.movie_container {position:relative; margin:7px 0 85px 0;}
+.movie_container .full_wrap{padding:0 11px; margin-bottom:30px;}
+.movie_container .full_wrap .flip_wrapper {margin:-7px auto; overflow:hidden; width:100%;}
+.movie_container .full_wrap .flip_wrapper ul::after{content:""; display:block; clear:both;}
+.movie_container .full_wrap .flip_wrapper ul{width:100%; display:flex; justify-content:center; flex-flow:row wrap; padding:0; margin:0; list-style:none;}
+.movie_container .full_wrap .flip_wrapper li{display:list-item; padding:0; margin:0; list-style:none;}
+.movie_container .full_wrap .flip_wrapper .movielist_util_wrap{position:relative;width:100%;height:57px; padding:0px 7px 0px 7px;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap {display:block; width:232px; border:1px solid #d9d9d9; margin:7px; float:left; height:auto !important;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieImage_wrap {width:100%;height:336px;position:relative}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieImage_wrap div {position:absolute;left:0;top:0;-webkit-transition:.5s ease-in-out;-moz-transition:.5s ease-in-out;-ms-transition:.5s ease-in-out;-o-transition:.5s ease-in-out;transition:.5s ease-in-out}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieImage_wrap .movieImage {visibility:visible; width:100%; position:absolute;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieImage_wrap .movieImage img {width:100%; height:336px; display:block;}
+
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieScore {overflow:hidden; padding:14px 13px; border-bottom:1px solid #d9d9d9;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieScore .avgScore {display:block; float:left; font-weight:700; color:#666; padding:2px 9px 0 0; font-size:14px !important;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieScore .avgStar {float:right; position:relative; width:119px; height:20px;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieScore .fillStar {position:absolute; width:90%; height:20px;}
+
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap {overflow:hidden; border-bottom:1px solid #d9d9d9;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieDateTxt {font-weight:700; color:#666; padding:9px 25px; font-size:14px !important; line-height:30px; height:50px; border-bottom:1px solid #d9d9d9;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieDateTxt p {float:right; width:87px; height:30px; text-align:center; font-size:18px; background:#503396; color:#fff; border-radius:5px; line-height:29px;}
+
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieInfo {padding:0 13px 14px 13px}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieInfo .movieTitle {margin:0; padding-top:20px; padding-bottom:16px; display:block; font-size:20px; font-weight:bold; color:#363636; white-space:nowrap; word-wrap:break-word;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieInfo .btn_wrap.sm_btn {margin-top:0; overflow:visible}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieInfo .btn_wrap {margin-top:16px; overflow:hidden;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieInfo .btn_wrap a {width:97px; height:46px; -webkit-transition:none; transition:none;}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieInfo .btn_wrap .img_btn{display:block; overflow:hidden; text-indent:-9999px; border:none; background-repeat:no-repeat; vertical-align:middle}
+.movie_container .full_wrap .flip_wrapper .movie_wrap .movieInfo_wrap .movieInfo h3,#flip_wrapper li.item .front-info .movie_info p {width:204px; text-overflow:ellipsis; overflow:hidden}
+.imgBtnMovie{background-image:url(http://image2.megabox.co.kr/mop/home/btns/btn_movie.png);}
+.btn_left {float:left !important; margin-bottom:11px !important; background-position:0px 0;}
+.btn_right {float:right !important; background-position:-150px 0;}
+
+
+/* 영화상세보기(movieDetail.jsp) */
+.btn_close {width:968px; height:128px; margin:0 auto; padding:90px 0 0 0; text-align:right;}
+.btn_close .closeMovieDetailPop {display:inline-block; width:38px !important; height:38px !important; border:1px solid #cdcdcd !important; background: #ffffff url(http://image2.megabox.co.kr/mop/home/btns/btn_close.png) 9px 9px no-repeat !important;}
+.modal_pop {position:fixed; top:0; right:0; bottom:0; left:0; z-index:1040; overflow:auto; overflow-y:scroll;}
+.movieDetailPop {width:968px; margin:0 auto; padding:0 0 55px 0;}
+.movieDetailPop a {color:grey; text-decoration:none;}
+.movieDetailPop .contents {width:100%; padding:65px 40px 5px 40px; background:#fff;}
+.movieDetailPop .contents .movieInfo_box {height:351px; margin-bottom:45px;}
+.movieDetailPop .contents .movieInfo_box .left_wrap {float: left;}
+.movieDetailPop .contents .movieInfo_box .left_wrap .movieImage {height: 350px;}
+.movieDetailPop .contents .movieInfo_box .right_wrap .movieInfo ul li {line-height:1.4; margin-bottom:3px;}
+.movieDetailPop .contents .movieInfo_box .right_wrap {height:100%; padding-left:35px; margin-left:245.34px;}
+.movieDetailPop .contents .movieInfo_box .right_wrap .movieTitle {overflow: visible;position: relative;min-height: 69px;border-bottom: 1px solid #e5e5e5;}
+.movieDetailPop .contents .movieInfo_box .right_wrap .movieTitle p{font-size:13px; color:#000;}
+.movieDetailPop .contents .movieInfo_box .right_wrap .movieTitle i{margin-right:0px !important; height:33px !important;}
+.movieDetailPop .contents .movieInfo_box .right_wrap .movieTitle span{font-size:28px; color:#000;}
+.movieDetailPop .contents .movieInfo_box .right_wrap .info_wrap {font-size: 14px;line-height: 22px; border-bottom: 1px solid #e5e5e5; padding:13px 0px 13px 0px;}
+.movieDetailPop .contents .movieRow_box {height:auto; margin-bottom:45px;}
+.movieDetailPop .contents .movieRow_box.comment_box {height:auto;}
+.movieDetailPop .contents .movieRow_box .sub-title {text-align:left; width: 30px; border-bottom: thin solid #B0ABAB;}
+.movieDetailPop .contents .movieRow_box h3 {margin:10px 0 15px 0; color:#000;}
+.movieDetailPop .contents .movieRow_box h3 span{font-size:16px;}
+.movieDetailPop .contents .movieRow_box .summary {color: #666;line-height: 20px;font-size: 14px;height: auto;}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap {width:100%; height:65px; border:1px solid #808080; margin-top:10px;}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap .select_star_Wrap {display:table; width:20%; height:100%; float:left; border-right:1px solid #808080;}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap .select_star_Wrap .out_wrap {display:table-cell; width:100%; text-align:center; vertical-align:middle;}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap .select_star_Wrap .middle_wrap {width:100%;}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap .select_star_Wrap .in_wrap {display:inline-block;}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap .select_star_Wrap .in_wrap input{float:left;}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap .select_star_Wrap .out_wrap a{display:inline-block; width:22px; height:22px; background:url(images/star_mid_on.png);}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap .textarea_comment{width:72%; height:100%; float:left; border-right:1px solid #808080;}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap .textarea_comment textarea {width:100%; height:100%; text-align:left; font-size:13px; line-height:17px; padding:22px 60px 15px 12px; border:none;}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap .button_comment {width:8%; height:100%; float:left;}
+.movieDetailPop .contents .movieRow_box .write_comment_wrap .button_comment button {cursor:pointer; border:none; background:#808080; width:100%; height:100%; display:inline-block; text-align:center; line-height:62px; font-size:16px; color:#fff;}
+.movieDetailPop .contents .movieRow_box .allCount {width:100%; margin:25px 0 5px 0;}
+.movieDetailPop .contents .movieRow_box .allCount span{margin-left:10px; font-size:13px; color:#000;}
+.movieDetailPop .contents .movieRow_box .allComment {border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; height:auto; overflow:hidden;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box {position:relative; width:100%; height:auto; padding:12px 0; float:left; border-bottom:1px dotted #e5e5e5;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box.my {position:relative; width:100%; height:auto; padding:12px 0; float:left; border:1px solid red; border-top:none;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box p {line-height:22px; font-size:13px; word-break:break-all; color:#000;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box dl {overflow:hidden; margin:8px 0 10px;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box dl dt{display:inline-block; float:left; clear:left;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box dl dt .em_left {display:inline-block; padding-right:7px; border-right:1px solid #e5e5e5; font-size:13px; font-style:normal;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box dl dt .em_center {display:inline-block; padding:0 7px 0 7px; border-right:1px solid #e5e5e5; font-size:13px; font-style:normal;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box dl dt .em_right {display:inline-block; padding-left:7px; font-size:13px; font-style:normal; cursor:pointer;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box .starScore {width:15%; float:left;text-align:center; line-height:22px;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box .starScore img {width:16px; display:inline-block;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box .contents {width:85%; padding:0 8px 0 8px; float:left; display:inline-block;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box .emotion {width:100%; float:left; text-align:right; padding-right:25px;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box .emotion .good {cursor:pointer; border:none; display:inline-block; overflow:hidden; width:50px; height:22px; margin:0 1px 0 4px; background:url(https://ssl.pstatic.net/static/movie/2014/01/sp_ico_review.png) no-repeat 0 -44px}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box .emotion .bad {cursor:pointer; border:none; display:inline-block; overflow:hidden; width:58px; height:22px; margin:0 1px 0 4px; background:url(https://ssl.pstatic.net/static/movie/2014/01/sp_ico_review.png) no-repeat -55px -44px}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box .emotion strong {display:inline-block; overflow:hidden; height:22px; padding-left:8px; background:url(https://ssl.pstatic.net/static/movie/2014/01/sp_ico_review.png) no-repeat -50px 0; line-height:16.5px; vertical-align:top; border-right:1.2px solid #e8e8e8;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box .emotion strong .like_Count {min-width:13px; padding:0 5px 0 0; background-position:100% 0; font-family:verdana; font-size:11px; color:RED; text-align:center;}
+.movieDetailPop .contents .movieRow_box .allComment .comment_box .emotion strong .dislike_Count {min-width:13px; padding:0 5px 0 0; background-position:100% 0; font-family:verdana; font-size:11px; color:BLUE; text-align:center;}
+.movieDetailPop .contents .movieRow_box .buttonPage {width:100%; margin-top:25px; text-align:center;}
+.movieDetailPop .contents .movieRow_box .buttonPage ul li {display:inline-block; vertical-align:top; margin-right:4px;}
+.movieDetailPop .contents .movieRow_box .buttonPage ul li a {display:block;border:1px solid #ccc;padding:0 8px;height:25px;line-height:25px;font-size:12px;color:#666;vertical-align:middle;text-decoration:none}
+.img_prev_next {background:url(http://image2.megabox.co.kr/mop/home/customer/bg_customer.png); border:none !important; padding:0; width:24px; height:25px;}
+.movieDetailPop .contents .movieRow_box .buttonPage ul li a.goFirst {background-position:-300px -550px;}
+.movieDetailPop .contents .movieRow_box .buttonPage ul li a.goPrev {background-position:-400px -550px}
+.movieDetailPop .contents .movieRow_box .buttonPage ul li a.goNext {background-position:-450px -550px}
+.movieDetailPop .contents .movieRow_box .buttonPage ul li a.goLast {background-position:-350px -550px}
+.movieDetailPop .contents .movieRow_box .buttonPage ul li a.active {background:#808080; color:#fff; pointer-events:none; cursor:default;}
+.movieDetailPop .contents .movieRow_box .buttonPage ul li a:hover {background-color:#e1e1e1;}
+
+
+
+/* 영화예약하기(movieBookPop.jsp) */
+/* step1,2,3 공통 */
+.reservation .wrapper {width: 100%; margin: 0 auto;}
+.reservation .wrapper .contents {width:100%; position:relative;}
+.reservation .wrapper .contents.ReservationBn_ok {height:630px}
+	
+/* step1 부분 */
+.slidebar{position:relative; width:390px; height:25px;background-color:#fff;border:1px solid #e0e0e0;-webkit-border-radius:2px;-moz-border-radius:2px;-ms-border-radius:2px;-o-border-radius:2px;border-radius:2px;}
+.slidebar .slidebar_control{position:absolute;width:100%;}
+.slidebar .slidebar_control li:first-child{border-left:none;border-right:1px solid #e0e0e0;float:left;}
+.slidebar .slidebar_control li{width:25px;height:25px;float:right;border-left:1px solid #e0e0e0;text-align:center;line-height:25px;cursor:pointer;}
+.slidebar .slidebar_control li i{display:block;line-height:22px;}
+.slidebar .slidebar_item{position:relative;width:340px;overflow:hidden;margin-left:25px;height:100%;}
+.slidebar .slidebar_item ol{white-space:nowrap;overflow:hidden;position:absolute;}
+.slidebar .slidebar_item ol li{float:left;width:68px;height:23px;}
+.slidebar .slidebar_item ol li a{display:block;height:100%;font-size:12px;font-weight:bold;text-align:center;line-height:23px;-webkit-border-radius:2px;-moz-border-radius:2px;-ms-border-radius:2px;-o-border-radius:2px;border-radius:2px;text-decoration:none;}
+.slidebar .slidebar_item ol li a.active{background-color:#808080;color:#fff}
+.slidebar .slidebar_item ol li a:hover{opacity:0.6; filter:alpha(opacity:"60"); -moz-opacity:0.6; -khtml-opacity:0.6;}
+.reservation {display:block; position:absolute; top:10.5%; right:0px; left:0px; width:971px; margin:0 auto; box-shadow:0 0 10px rgba(0,0,0,0.5); border-radius:5px; box-sizing:border-box; background:#fff; text-align:left; z-index:3;}
+.reservation .closeMovieBookPop {position: absolute;right: -1px;top: -38px;width: 38px !important;height: 38px !important;margin: 0 !important;border: 1px solid #cdcdcd !important;background: #ffffff	url(http://image2.megabox.co.kr/mop/home/btns/btn_close.png) 9px 9px no-repeat !important;opacity: 1; border-radius:7px;}
+.reservation .wrapper .contents .left_wrap{float:left; border-right:1px solid #e0e0e0; margin-right:-1px; height:100%;}
+.reservation .wrapper .contents .left_wrap .title {margin-bottom:16px;}
+.reservation .wrapper .contents .left_wrap .title h2{color:#000; font-size:24px;} 
+.reservation .wrapper .contents .left_wrap .date {padding:15px 15px 6px 15px; border-bottom:1px solid #e0e0e0;}
+.reservation .wrapper .contents .left_wrap .theater {padding:15px 15px 15px 15px; border-bottom:1px solid #e0e0e0; height:285px; width:430px;}
+.reservation .wrapper .contents .left_wrap .theater .cinemaList {height:210px; width:100%}
+.reservation .wrapper .contents .left_wrap .theater .cinemaList .mainLocation{position:relative; float:left; width:103.5px; height:100%; border-bottom:0px;}
+.reservation .wrapper .contents .left_wrap .theater .cinemaList .mainLocation ul li{height:30px; border-bottom:1px solid #e5e5e5;}
+.reservation .wrapper .contents .left_wrap .theater .cinemaList .mainLocation ul li a{display:block; height:100%; font-size:12px; line-height:27.5px; padding-left:10px;} .mainLocation ul li a.active{background:#808080; color:#fff;}
+.reservation .wrapper .contents .left_wrap .theater .cinemaList .subLocation{position:relative; float:left; width:296.5px; height:100%; padding-left:3.5px; overflow:auto; white-space:normal; overflow-y:auto;}
+.reservation .wrapper .contents .left_wrap .theater .cinemaList .subLocation ul li {position:relative; width:30%; height:30px; margin:0 0 6px 6px; float:left; text-align:center;}
+.reservation .wrapper .contents .left_wrap .theater .cinemaList .subLocation ul li a{display:block; height:100%; line-height:27px; border:1px solid #e5e5e5; font-size:12px; overflow:hidden;} .subLocation ul li a.active{background:#e5e5e5;}
+.reservation .wrapper .contents .left_wrap .movie {padding:15px 15px 15px 15px;height:258px; width:100%;}
+.reservation .wrapper .contents .right_wrap {float:left; width:55.7%; height:100%;}
+.reservation .wrapper .contents .right_wrap .time {height:87px; padding:15px 15px 6px 15px; border-bottom:1px solid #e0e0e0;}
+.reservation .wrapper .contents .right_wrap .title h2{color:#000; font-size:24px;}
+.reservation .wrapper .contents .right_wrap .movie_list {width:541px !important; height:543px !important; border:none; overflow:auto; position:relative;}
+.reservation .wrapper .contents .right_wrap .movie_list ul li {height:57px; border-bottom:1px solid #e5e5e5; border-left:1px solid #e5e5e5; background-color:#fff; cursor:pointer;}
+.reservation .wrapper .contents .right_wrap .movie_list ul li.active {background:#e5e5e5;}
+.reservation .wrapper .contents .right_wrap .movie_list ul li:hover{opacity:0.5; filter:alpha(opacity:"60"); -moz-opacity:0.6; -khtml-opacity:0.6;}
+.reservation .wrapper .contents .right_wrap .movie_list ul li > div {float:left; position:relative; background:url(http://image2.megabox.co.kr/mop/home/btns/btn_close.png) right -357px no-repeat; height:100%;}
+.reservation .wrapper .contents .right_wrap .movie_list ul li > div p {margin:0; padding:0;}
+.reservation .wrapper .contents .right_wrap .movie_list .viewing_time {width:26%; padding:15px 0 0 20px;}
+.reservation .wrapper .contents .right_wrap .movie_list .viewing_time p {color: #333;font-size: 14px;}
+.reservation .wrapper .contents .right_wrap .movie_list .viewing_time p strong {font-size: 20px;}
+.reservation .wrapper .contents .right_wrap .movie_list .movie {width: 49%;padding: 11px 0 0 10px; overflow:hidden;}
+.reservation .wrapper .contents .right_wrap .movie_list .movie .title {vertical-align: top;font-weight: 700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.reservation .wrapper .contents .right_wrap .movie_list .movie .title span {float:left;}
+.reservation .wrapper .contents .right_wrap .movie_list .subtitle {top:35px; margin-top:5px; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.reservation .wrapper .contents .right_wrap .movie_list .theater_wrap {width: 25%; padding:9px 19px 9px 0; background:none; float:right;}
+.reservation .wrapper .contents .right_wrap .movie_list .theater_wrap p {text-align:right; white-space: nowrap; font-size:12px;}
+.reservation .wrapper .contents .right_wrap .movie_list .cinemaName {top:12px; right:19px; font-weight:400 !important;}
+.reservation .wrapper .contents .right_wrap .movie_list .cinemaRoom {top:25px; right:19px; font-weight:400 !important; margin:1px 0 1px 0;}
+.reservation .wrapper .contents .right_wrap .movie_list .cinemaSeat {top:38px; right:19px; font-weight:400 !important;}
+	
+/* step2 부분 */
+.reservation .wrapper .contents .selectbox {height:70px; border-bottom:1px solid #ccc; background:#fff; padding:0 28px 0 30px;}
+.reservation .wrapper .contents .selectbox .ul_personSelect {height:100%; padding:20px 0 10px;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .search_btn {background:#fff; border-bottom:1px sollid #333; border-left:0px solid #333; border-right:0px solid #333; border-top:0px solid #333; width: 125px; padding-right: 0px; padding-left: 0px; height:31px;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .search_btn_span {border-image: none; width: 120px; color: #000; padding-right: 3px; margin-top: 1px; margin-left: 2px; display: block; height:18px;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .search_btn2 {background:#333; border-width: 1px 0px 1px 1px; width: 125px; padding-right: 0px; padding-left: 0px; height:31px;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .search_btn_span2 {border-image: none; width: 120px; color:#fff; padding-left: 4px; margin-top: 1px; margin-left: 2px; display: block; height:18px;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .li_personSelect {width:100%; height:100%;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .li_personSelect .left_li{height:22px; float:left; display:inline-block; font-size:14px; margin:5px 464px 0 0;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .li_personSelect .right_li{height:33px; float:left; display:inline-block; font-size:14px;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .li_personSelect .left_li .title {height:100%; float:left; margin-right:10px; font-size:20px; color:#000;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .li_personSelect .left_li select {width:70px; height:100%; color:#000;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .li_personSelect .left_li .select_box {height:100%; width:70px; position:relative; float:left;}
+.reservation .wrapper .contents .selectbox .ul_personSelect .li_personSelect .left_li .select_box ul {min-width:auto; width:68px;}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner {width:100%; min-height:80px; margin:0px;}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box {position:relative;}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box .screen_tit {display:block; margin-bottom:15px; height:29px; font-size:20px; color:#000; font-weight:normal; background:#e3e3e3;}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box .screen_tit span {height:100%; width:100%; padding:4px 0 0 466px; float:left; display:block;}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box .screen_scroll {position:relative; overflow:hidden;}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box .screen_scroll .screen_Fbox .seat_Barea {overflow:auto; position:relative; padding:20px 0; background:#f9f8EA;}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box .screen_scroll .screen_Fbox .seat_area {height: 263px; margin-left: 315.5px; position:relative;}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box .screen_scroll .screen_Fbox .seat_area .seat_tit {position:absolute; display:inline-block; width:20px; height:22px; text-align:left; line-height:22px; font-size:11px; color:#2b2e33}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box .screen_scroll .screen_Fbox .seat_area a {position:absolute; display:block; width:22px; height:22px; background:#848484; text-align:center; color:#fff; font-size:11px; line-height:23px;}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box .screen_scroll .screen_Fbox .seat_area a:hover {background:#000; color:#fff}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box .screen_scroll .screen_Fbox .seat_area .on {background:#000; color:#fff}
+.reservation .wrapper .contents .mseat_wrap .mseat_inner .screen_box .screen_scroll .screen_Fbox .seat_area .off {display:none;}
+
+table tr td{padding:10px 0; color:#fff;}

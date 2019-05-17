@@ -1,0 +1,37 @@
+@charset "utf-8";
+/************************************************************************
+ * filename : findAccount.css
+ * description : 회원가입 (findIdPw.jsp / modifyPW.jsp) CSS
+ * date : 2019.01.04
+************************************************************************/
+
+/* 공통 */
+.popupFindId {padding:20px 20px 0 20px;}
+.popupFindId .findId {overflow:hidden; width:570px; height:50px; border-bottom:2px solid #e6e6e6;}
+.popupFindId .findId li {float:left; height:50px;}
+.popupFindId .findId .selectId a {display:block; width:155px; height:50px; padding-top:18px; color:#999999; font-size:14px; font-weight:bold; text-align:center; border:1px solid #e6e6e6; border-bottom:none; background:#fff;}
+.popupFindId .findId .selectedId a {display:block; width:155px; height:50px; padding-top:18px; color:#999999; font-size:14px; font-weight:bold; text-align:center; border:1px solid #e6e6e6; border-bottom:none; background:#e9e9e9;}
+.popupFindId .findId .selectPw a {display:block; width:155px; height:50px; padding-top:18px; color:#999999; font-size:14px; font-weight:bold; text-align:center; border:1px solid #e6e6e6; border-bottom:none; border-left:none; background:#fff;}
+.popupFindId .findId .selectedPw a {display:block; width:155px; height:50px; padding-top:18px; color:#999999; font-size:14px; font-weight:bold; text-align:center; border:1px solid #e6e6e6; border-bottom:none; border-left:none; background:#e9e9e9;}
+.btn_search {background:#198591; width: 108px; height:45px; display:inline-block; text-align:center; vertical-align:middle; line-height:45px; text-decoration:none; font-size:15px; color:#fff;}
+.btn_close {border:1px solid #198591; color:#198591; width:108px; height:45px; display:inline-block; text-align:center; vertical-align:middle; line-height:45px; text-decoration:none; font-size:15px;}
+
+/* findIdPw.jsp(아이디찾기), modifyPW.jsp */
+.popupFindId .idContents {position:relative;}
+.popupFindId .idContents .tit {width:570px;padding:38px 0 10px 0;color:#000000;font-size:14px;font-weight:bold;line-height:1.4;word-break:break-all;word-wrap:break-word;}
+.popupFindId .idContents .findPwSec {width:100%;}
+.popupFindId .idContents .findPwInput {overflow:hidden;width:100%; margin:0; padding:10px 0 10px 20px;background-color:#f6f6f7;}
+.popupFindId .idContents .findPwInput .td {width:130px; vertical-align:middle;}
+.popupFindId .idContents .findPwInput p {margin:0;}
+.popupFindId .idContents .findPwInput input {display:block;width:95%;padding:18px 0 16px 18px;color:#888;font-size:14px;border:0;background-color:#eaf0fe;}
+.popupFindId .idContents .search {width:100%; text-align:center; margin-top:30px;}
+
+/* findIdPw.jsp(비밀번호찾기) */
+.popupFindId .pwContents {position:relative;}
+.popupFindId .pwContents .tit {width:570px;padding:38px 0 10px 0;color:#000000;font-size:14px;font-weight:bold;line-height:1.4;word-break:break-all;word-wrap:break-word;}
+.popupFindId .pwContents .findPwSec {width:100%;}
+.popupFindId .pwContents .findPwInput {overflow:hidden;width:100%; margin:0; padding:10px 0 10px 20px;background-color:#f6f6f7;}
+.popupFindId .pwContents .findPwInput .td {width:130px; vertical-align:middle;}
+.popupFindId .pwContents .findPwInput p {margin:0;}
+.popupFindId .pwContents .findPwInput input {display:block;width:95%;padding:18px 0 16px 18px;color:#888;font-size:14px;border:0;background-color:#eaf0fe;}
+.popupFindId .pwContents .search {width:100%; text-align:center; margin-top:30px;}

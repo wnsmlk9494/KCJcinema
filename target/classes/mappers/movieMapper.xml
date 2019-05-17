@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movie.mappers.MovieMapper">
+<!-- 영화 정보 조회 -->
+	<select id="selectMovieInfo" resultType="MovieDTO">
+  		SELECT *
+  		FROM tbl_movieinfo
+  		WHERE movieNum = #{movieNum}
+	</select>
+	
+	
+<!-- 메인페이지(boxOffice/showingMovie/soonComing.jsp) - 화면에 보일 수 있는 최대 영화 개수 -->
+	<select id="selectboxOfficListCount" resultType="MovieDTO">
+  		SELECT DISTINCT COUNT(*) AS allCount
+  		FROM tbl_movieinfo A, tbl_cinemaschedule B
+  		WHERE A.movieNum = B.movieNum
+  		<![CDATA[
+  			AND DATE_FORMAT(NOW(), '%Y%m%d') <= B.endDate
+  		]]>
+	</select>
+	
+	<select id="selectShowingMovieListCount" resultType="MovieDTO">
+  		SELECT DISTINCT COUNT(*) AS allCount
+		FROM tbl_movieinfo A, tbl_cinemaschedule B
+		WHERE A.movieNum = B.movieNum
+		<![CDATA[
+			AND B.strDate <= DATE_FORMAT(NOW(), '%Y%m%d')
+			AND DATE_FORMAT(NOW(), '%Y%m%d') <= B.endDate
+		]]>
+	</select>
+	
+	<select id="selectSoonComingListCount" resultType="MovieDTO">
+  		SELECT DISTINCT COUNT(*) AS allCount
+		FROM tbl_movieinfo A, tbl_cinemaschedule B
+		WHERE A.movieNum = B.movieNum
+		<![CDATA[
+			AND B.strDate > DATE_FORMAT(NOW(), '%Y%m%d')
+		]]>
+	</select>
+
+
+<!-- 메인페이지(boxOffice.jsp) - 상영 중 및 상영 예정, 높은 평점 순 영화 리스트 뷰 -->
+<!-- 현재 날짜가 상영 종료 전의 영화 조회, 평점이 높은 순으로 조회 -->
+	<select id="selectBoxOffice" resultType="MovieDTO">
+  		SELECT DISTINCT A.*, B.strDate, B.endDate
+  		FROM tbl_movieinfo A, tbl_cinemaschedule B
+  		WHERE A.movieNum = B.movieNum
+  		<![CDATA[
+  			AND DATE_FORMAT(NOW(), '%Y%m%d') <= B.endDate
+  		]]>
+  		ORDER BY A.movieScore DESC, A.movieName
+  		LIMIT #{startCount}, #{listCount}
+	</select>
+	
+<!-- 메인페이지(showingMovie.jsp) - 상영 중 영화 리스트 뷰 -->
+<!-- 현재 날짜가 상영 시작과 종료 사이인 영화 조회, 영화 이름 순으로 조회 -->
+	<select id="selectShowingMovie" resultType="MovieDTO">
+		SELECT DISTINCT A.*, B.strDate, B.endDate
+		FROM tbl_movieinfo A, tbl_cinemaschedule B
+		WHERE A.movieNum = B.movieNum
+		<![CDATA[
+			AND B.strDate <= DATE_FORMAT(NOW(), '%Y%m%d')
+			AND DATE_FORMAT(NOW(), '%Y%m%d') <= B.endDate
+		]]>
+		ORDER BY A.movieName
+		LIMIT #{startCount}, #{listCount}
+	</select>
+	
+<!-- 메인페이지(soonMovie.jsp) - 상영 예정 영화 리스트 뷰 -->
+<!-- 현재 날짜보다 상영 시작 날짜가 더 큰 영화 조회, 영화 이름 순으로 조회 -->
+	<select id="selectSoonMovie" resultType="MovieDTO">
+		SELECT DISTINCT A.*, B.strDate, B.endDate
+		FROM tbl_movieinfo A, tbl_cinemaschedule B
+		WHERE A.movieNum = B.movieNum
+		<![CDATA[
+			AND B.strDate > DATE_FORMAT(NOW(), '%Y%m%d')
+		]]>
+		ORDER BY A.movieName
+		LIMIT #{startCount}, #{listCount}
+	</select>
+	
+	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 총 평수 조회 -->
+	<select id="selectCommentCount" resultType="MovieDTO">
+  		SELECT COUNT(*) AS allCount
+  		FROM tbl_moviecomment
+  		WHERE movieNum = #{movieNum}
+	</select>
+	
+	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 해당 영화 평점 조회 -->
+	<select id="selectMovieAvgScore" resultType="MovieDTO">
+		SELECT ROUND(AVG(movieScore),2) AS AvgValue
+		FROM tbl_moviecomment
+		WHERE movieNum = #{movieNum}
+	</select>
+	
+	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 해당 영화 로그인 유저의 댓글 불러오기 -->
+	<select id="selectMyComment" resultType="MovieDTO">
+  		SELECT seqNum, CONCAT(LEFT(mberId, 3),'*****') AS subMberId, mberId, DATE_FORMAT(insertTime, '%Y.%m.%d %H:%m:%s') AS insertTime, movieComment, likeComment, dislikeComment, movieScore  
+  		FROM tbl_moviecomment 
+  		WHERE movieNum = #{movieNum}
+  		AND mberId = #{mberId}
+	</select>	
+	
+	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 해당 영화 로그인 유저 외 댓글 전체 불러오기 -->
+	<select id="selectExistComment" resultType="MovieDTO">
+	SELECT EXISTS(SELECT *
+				  FROM tbl_moviecomment 
+  				  WHERE movieNum = #{movieNum}) AS checkValue
+	</select>
+	
+	<select id="selectAllComment" resultType="MovieDTO">
+  		SELECT seqNum, CONCAT(LEFT(mberId, 3),'*****') AS subMberId, mberId, DATE_FORMAT(insertTime, '%Y.%m.%d %H:%m:%s') AS insertTime, movieComment, likeComment, dislikeComment, movieScore  
+  		FROM tbl_moviecomment 
+  		WHERE movieNum = #{movieNum}
+  		AND mberId != #{mberId}
+  		ORDER BY seqNum DESC
+  		LIMIT #{startCount}, #{listCount}
+	</select>
+	
+	<select id="selectAllComment_few" resultType="MovieDTO">
+  		SELECT seqNum, CONCAT(LEFT(mberId, 3),'*****') AS subMberId, mberId, DATE_FORMAT(insertTime, '%Y.%m.%d %H:%m:%s') AS insertTime, movieComment, likeComment, dislikeComment, movieScore  
+  		FROM tbl_moviecomment 
+  		WHERE movieNum = #{movieNum}
+  		AND mberId != #{mberId}
+	</select>
+	
+	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 댓글 등록 기록 확인(댓글 작성 창 가리기 위함) -->
+	<select id="selectAlreadyInsertComment" resultType="MovieDTO">
+  		SELECT EXISTS(
+			SELECT * FROM tbl_moviecomment WHERE mberId=#{mberId} AND movieNum=#{movieNum}
+		) AS checkValue
+	</select>
+	
+	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 댓글 등록 -->
+	<insert id="insertMovieComment">
+		INSERT INTO tbl_moviecomment(mberId, movieNum, movieComment, movieScore, insertTime)
+		VALUES
+		(#{mberId}, #{movieNum}, #{movieComment}, #{movieScore}, NOW())
+  	</insert>
+  	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 댓글 등록 시 tbl_movieInfo 테이블의 영화 평점 계산하여 update -->
+	<update id="updatetMovieAvgScore">
+   		UPDATE tbl_movieinfo 
+   		SET movieScore = #{movieScore} 
+   		where movieNum = #{movieNum}
+  	</update>
+  	
+  	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 댓글 삭제 -->
+	<delete id="deleteMyMovieComment">
+		DELETE FROM tbl_moviecomment
+		WHERE mberId=#{mberId}
+		AND movieNum=#{movieNum}
+	</delete>
+  	
+  	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 댓글마다의 seqNum를 가지고 해당 댓글의 mberId값을 조회 -->
+  	<select id="selectCommentId" resultType="MovieDTO">
+  		SELECT mberId
+  		FROM tbl_moviecomment 
+  		WHERE movieNum = #{movieNum}
+  		AND seqNum=#{seqNum}
+	</select>
+  	
+  	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 공감관련 테이블 조회 후 count값이 1이면 이미 공감, 0이면 공감 이력 없음 -->
+  	<select id="selectLikeAlreadyAccessment" resultType="MovieDTO">
+  		SELECT EXISTS(
+			SELECT * FROM tbl_moviecomment_like WHERE movieNum=#{movieNum} AND postMberId=#{postMberId} AND likeMberId=#{mberId}
+		) AS checkValue
+		
+<!--   		SELECT COUNT(*) AS checkValue -->
+<!-- 		FROM tbl_moviecomment_like -->
+<!-- 		WHERE movieNum=#{movieNum} -->
+<!-- 		AND postMberId=#{postMberId} -->
+<!-- 		AND likeMberId=#{mberId} -->
+	</select>
+	
+<!-- 영화 상세보기(movieDetailPop.jsp) - 비공감관련 테이블 조회 후 count값이 1이면 이미 비공감, 0이면 비공감 이력 없음 -->
+	<select id="selectDislikeAlreadyAccessment" resultType="MovieDTO">
+		SELECT EXISTS(
+			SELECT * FROM tbl_moviecomment_dislike WHERE movieNum=#{movieNum} AND postMberId=#{postMberId} AND dislikeMberId=#{mberId}
+		) AS checkValue
+		
+<!--   		SELECT COUNT(*) AS checkValue -->
+<!-- 		FROM tbl_moviecomment_dislike -->
+<!-- 		WHERE movieNum=#{movieNum} -->
+<!-- 		AND postMberId=#{postMberId} -->
+<!-- 		AND dislikeMberId=#{mberId} -->
+	</select>
+  	
+  	
+<!--   	로그인한 유저가 해당 영화에 '공감'을 누른다면 공감과 이력을 관리하는 테이블에 등록 -->
+  	<insert id="insertMovieComment_like">
+		INSERT INTO tbl_moviecomment_like(movieNum, postMberId, likeMberId, insertTime)
+		VALUES
+		(#{movieNum}, #{postMberId}, #{mberId}, NOW())
+  	</insert>
+  	
+<!--   	로그인한 유저가 해당 영화에 '비공감'을 누른다면 비공감 이력을 관리하는 테이블에 등록 -->
+  	<insert id="insertMovieComment_dislike">
+		INSERT INTO tbl_moviecomment_dislike(movieNum, postMberId, dislikeMberId, insertTime)
+		VALUES
+		(#{movieNum}, #{postMberId}, #{mberId}, NOW())
+  	</insert>
+  	
+  	
+<!-- 	이미 해당 영화에 '공감'을 표한 유저가 공감을 한번 더 눌러 취소할 경우 공감 이력을 관리하는 테이블에서 삭제 -->
+  	<delete id="deleteMovieComment_like">
+		DELETE FROM tbl_moviecomment_like
+		WHERE movieNum=#{movieNum}
+		AND postMberId=#{postMberId}
+		AND likeMberId=#{mberId}
+  	</delete>
+  	
+<!-- 	이미 해당 영화에 '비공감'을 표한 유저가 비공감을 한번 더 눌러 취소할 경우 비공감 이력을 관리하는 테이블에서 삭제 -->
+  	<delete id="deleteMovieComment_dislike">
+		DELETE FROM tbl_moviecomment_dislike
+		WHERE movieNum=#{movieNum}
+		AND postMberId=#{postMberId}
+		AND dislikeMberId=#{mberId}
+  	</delete>
+  	
+  	
+<!--   	로그인한 유저가 해당 영화의 댓글에서 공감과 비공감을 눌렀을 때 등록/취소  -->
+  	<update id="updateMovieComment_like">
+   		UPDATE tbl_moviecomment set likeComment=likeComment+1
+   		WHERE seqNum=#{seqNum}
+   		AND movieNum=#{movieNum}
+  	</update>
+  	<update id="updateMovieComment_dislike">
+   		UPDATE tbl_moviecomment set dislikeComment=dislikeComment+1
+   		WHERE seqNum=#{seqNum}
+   		AND movieNum=#{movieNum}
+  	</update>
+  	<update id="updateMovieComment_UnLike">
+   		UPDATE tbl_moviecomment set likeComment=likeComment-1
+   		WHERE seqNum=#{seqNum}
+   		AND movieNum=#{movieNum}
+  	</update>
+  	<update id="updateMovieComment_Undislike">
+   		UPDATE tbl_moviecomment set dislikeComment=dislikeComment-1
+   		WHERE seqNum=#{seqNum}
+   		AND movieNum=#{movieNum}
+  	</update>
+
+
+<!-- 영화예약(movieBookPop.jsp) - 서울, 경기, 강원 등등 지역을 선택하고 각 지역마다의 지점 조회 -->
+	<select id="selectMainLocation" resultType="MovieDTO">
+  		SELECT *
+  		FROM tbl_mainlocation
+  		ORDER BY locationNum
+	</select>
+	
+	
+<!-- 영화예약(movieBookPop.jsp) - 서울, 경기, 강원 등등 지역을 선택하고 각 지역마다의 지점 조회 -->
+	<select id="selectSubLocation" resultType="MovieDTO">
+  		SELECT *
+  		FROM tbl_sublocation
+  		WHERE locationNum = #{locationNum}
+  		ORDER BY cinemaName
+	</select>
+	
+	
+<!-- 영화예약(movieBookPop.jsp) - 영화 상영정보 -->
+	<select id="selectMovieShowInfo" resultType="MovieDTO">
+  		SELECT B.cinemaNum, B.cinemaName, B.cinemaRoomNum, B.cinemaRoomName, A.movieNum, A.strDate, A.strTime, A.endTime, C.movieAge, C.movieName, C.movieGenre
+		FROM tbl_cinemamovietime A, tbl_cinema B, tbl_movieinfo C
+		WHERE A.cinemaNum = B.cinemaNum
+		AND A.cinemaRoomNum = B.cinemaRoomNum
+		AND A.movieNum = C.movieNum
+		AND A.cinemaNum = #{cinemaNum}
+		AND A.movieNum = #{movieNum}
+		AND A.strDate = #{strDate}
+		<![CDATA[ 
+		AND DATE_FORMAT(SUBDATE(NOW(), INTERVAL -20 MINUTE), '%Y%m%d%H%i') < CONCAT(A.strDate,A.strTime)
+		]]> 
+		ORDER BY A.strDate
+	</select>
+	
+	
+<!-- 영화예약(movieBookPop.jsp) - step2->step3 때 예약번호를 생성 -->
+	<select id="selectFindBookNum" resultType="MovieDTO">
+  		SELECT DISTINCT bookNum
+		FROM tbl_cinemabook
+		WHERE cinemaNum = #{cinemaNum}
+		AND DATE_FORMAT(bookDate, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d')
+		ORDER BY bookNum DESC limit 1
+	</select>
+	
+	
+<!-- 영화예약(movieBookPop.jsp) - 시간대 조회하면서 해당 시간에 남은 좌석 수 제공 -->
+	<select id="selectAvailableSeatNum" resultType="MovieDTO">
+  		SELECT 99-COUNT(*) AS availableSeatNum
+  		FROM tbl_cinemabook 
+  		WHERE strDate = #{strDate} 
+  		AND cinemaNum = #{cinemaNum}
+  		AND cinemaRoomNum = #{cinemaRoomNum}
+  		AND strTime = #{strTime}
+  		AND bookStatus = '01'
+	</select>
+	
+	
+<!-- 영화예약(movieBookPop.jsp) - 시간대 조회하면서 해당 시간에 예약된 좌석 정보 제공(step2 그림)	 -->
+	<select id="selectBookedSeatNum" resultType="MovieDTO">
+  		SELECT seatNum
+  		FROM tbl_cinemabook 
+  		WHERE strDate = #{strDate} 
+  		AND cinemaNum = #{cinemaNum}
+  		AND cinemaRoomNum = #{cinemaRoomNum}
+  		AND strTime = #{strTime}
+  		AND bookStatus = '01'
+	</select>
+	
+	
+<!-- 영화예약(movieBookPop.jsp) - 영화예매 정보 저장(영화예약) -->
+	<insert id="insertBooktForm">
+		INSERT INTO tbl_cinemabook(bookNum, mberId, movieNum, movieName, strDate, locationNum, locationName, cinemaNum, cinemaName, cinemaRoomNum, cinemaRoomName, strTime, endTime, seatNum, totalAmt, bookDate, bookStatus)
+		VALUES
+		(#{bookNum}, #{mberId}, #{movieNum}, #{movieName}, #{strDate}, #{locationNum}, #{locationName}, #{cinemaNum}, #{cinemaName}, #{cinemaRoomNum}, #{cinemaRoomName}, #{strTime}, #{endTime}, #{seatNum}, #{totalAmt}, NOW(), '01')
+  	</insert>
+
+
+<!-- 나의영화내역(myMovieList.jsp) - 총 예매 수 조회-->
+	<select id="selectMyMovieListCount" resultType="MovieDTO">
+  		SELECT COUNT(*) as allCount
+		FROM (
+			SELECT DISTINCT A.bookNum
+			FROM tbl_cinemabook A
+			WHERE A.mberId = #{mberId}) B
+	</select>
+	
+<!-- 나의영화내역(myMovieList.jsp) - 로그인 된 회원의 영화 관람 내역 조회 -->
+  	<select id="selectMyMovieList" resultType="MovieDTO">
+  		SELECT A.bookNum, A.movieName, A.strDate, A.locationName, A.cinemaName, A.cinemaRoomName, A.strTime, A.endTime, GROUP_CONCAT(A.seatNum SEPARATOR ',') AS seatNum, A.totalAmt, A.bookDate, A.bookStatus, B.movieAge, B.movieImage
+		FROM tbl_cinemabook A, tbl_movieinfo B
+		WHERE A.movieNum = B.movieNum
+		AND A.mberId = #{mberId}
+		GROUP BY A.bookNum, A.movieName, A.strDate, A.locationName, A.cinemaName, A.cinemaRoomName, A.strTime, A.endTime, A.totalAmt, A.bookDate, A.bookStatus, B.movieAge, B.movieImage
+		ORDER BY A.bookNum DESC
+		LIMIT #{startCount}, #{listCount}
+	</select>
+	
+	<select id="selectMyMovieList_few" resultType="MovieDTO">
+  		SELECT A.bookNum, A.movieName, A.strDate, A.locationName, A.cinemaName, A.cinemaRoomName, A.strTime, A.endTime, GROUP_CONCAT(A.seatNum SEPARATOR ',') AS seatNum, A.totalAmt, A.bookDate, A.bookStatus, B.movieAge, B.movieImage
+		FROM tbl_cinemabook A, tbl_movieinfo B
+		WHERE A.movieNum = B.movieNum
+		AND A.mberId = #{mberId}
+		GROUP BY A.bookNum, A.movieName, A.strDate, A.locationName, A.cinemaName, A.cinemaRoomName, A.strTime, A.endTime, A.totalAmt, A.bookDate, A.bookStatus, B.movieAge, B.movieImage
+		ORDER BY A.bookNum DESC
+	</select>
+	
+	
+<!-- 나의영화내역(myMovieList.jsp) - 영화 예매 취소신청 -->
+	<update id="updateBookStatus">
+   		UPDATE tbl_cinemabook 
+   		SET bookStatus = #{bookStatus}, updateTime = NOW() 
+   		where mberId = #{mberId}
+   		AND bookNum = #{bookNum}
+  	</update>
+</mapper>

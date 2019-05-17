@@ -1,0 +1,74 @@
+@charset "utf-8";
+/************************************************************************
+ * filename : common.css
+ * description : 전체 JSP 공통
+ * date : 2019.01.04
+************************************************************************/
+*{
+	font-family:"NanumSquare","맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif; 
+	color:#717171; 
+	line-height:1;
+	vertical-align:baseline;
+	-webkit-text-size-adjust:100%;
+	margin:0;
+	padding:0;
+	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; list-style:none; text-decoration:none;
+}
+
+#Progress_Loading{position:absolute; left:50%; top:50%; background:#ffffff;}
+
+html, body {height:100%; width:100%;}
+
+/* html5 input 기본 기능인 텍스트제거, 가림막제거 기능 삭제 */
+input[type=text]::-ms-clear{display:none;}
+input[type=password]::-ms-reveal{display:none;}
+
+/* top.jsp */
+.header{position:relative; width:100%; top:0px; left:0px; border-bottom:1px solid #e9e4d2;}
+.header .header_first{width:100%; height:30px; background:#f8f8f6;}
+.header .header_first ul li{float:right; font-size:12px; padding:9px 0 0 20px; line-height:12px; list-style:none;}
+.header .header_first ul li a{font-size:12px; color:#717171;}
+.header .header_second {position:relative; width:75%; margin:auto; height:100px;}
+.header .header_second h1 {position:absolute; top:34px; left:0px;}
+.header .header_second h1 a{display:inline-block; width:160px; font-size:26px; vertical-align:top; height:32px; color:#000;}
+.header .header_second .second_menu {position:absolute; top:43px; right:0px; font-size:15px;}
+.header .header_second .second_menu .menu {margin-left:15px; height:100%; float:left;}
+.header .header_second .second_menu .menu a {float:left; margin-left:15px; height:58px;}
+.header .header_second .second_menu .menu .active {font-weight:bold; border-bottom:2px solid #000;}
+
+/* footer.jsp */
+.footer {padding:24px; background:#06080e; bottom: 0;left: 0;right: 0;}
+.footer .footer_container {text-align:center;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;position:relative;}
+.footer .footer_container .footer_grid {width:100%;}
+.footer .footer_container .footer_grid .footer_sub_grid {width:100% !important; position:relative; padding-right:15px; padding-left:15px; margin:0px;} 
+.footer .footer_container .footer_grid .footer_sub_grid h3 {margin-bottom:17px; font-size:20px; color:#fff; position:relative; font-weight:700; letter-spacing:1px;}
+.footer .footer_container .footer_grid .footer_sub_grid hr {width:65%; margin:0 auto; border-bottom:0px; border-left:0px; border-right:0px; border-top:2px solid red;}
+.footer .footer_container .footer_grid .footer_sub_grid ul {width:100%; margin-top:5px;}
+.footer .footer_container .footer_grid .footer_sub_grid ul li {color:#98a0b9; line-height:1.8em; list-style-type:none; font-size:11px; letter-spacing:1px;}
+
+/* 연령에 따른 시청제한 아이콘 */
+.age_l{background:url(http://image2.megabox.co.kr/mop/home/bg_age_l.png) 0 -999px no-repeat;display:inline-block;width:30px;height:32px;margin-right:15px;text-indent:-99999px;overflow:hidden;vertical-align:text-bottom}
+.age_12_l{background-position:-71px 0;}
+.age_15_l{background-position:-110px 0;}
+.age_19_l{background-position:-35px 0;}
+.age_all_l{background-position:0 0;}
+.age_unknown_l{background-position:100% 0}
+.age,.age_m{background:url(http://image2.megabox.co.kr/mop/home/bg_age2.png) 0 -999px no-repeat;display:inline-block;width:17px;height:18px;margin-right:4px;text-indent:-99999px;overflow:hidden;vertical-align:middle}
+.age_m{margin:0 5px 0 15px;width:20px;height:21px;background:url(http://image2.megabox.co.kr/mop/home/bg_age_m.png) 0 -999px no-repeat}
+.age_all{background-position:0 0}
+.age_19{background-position:-30px 0}
+.age_12{background-position:-60px 0}
+.age_15{background-position:-90px 0}
+.age_unknown{background-position:-120px 0}
+.age_blank{background:none !important}
+.film_rate {display: inline-block;overflow: hidden;text-indent: -9999px;margin: -3px 10px 0 0;width: 20px;height: 21px;vertical-align: middle;	background: url(http://image2.megabox.co.kr/mop/home/btns/btn_movie.png) 0 -200px no-repeat}
+.film_rate.age_all {background-position: 0 -200px} 
+.film_rate.age_19 {background-position: -30px -200px}
+.film_rate.age_12 {background-position: -60px -200px}
+.film_rate.age_15 {background-position: -90px -200px}
+.film_rate.age_unknown {background-position: -120px -200px}
+.film_rate.age_blank {background: none !important}
+
+/* 요소 위치 고정 */
+.component_left{text-align:left !important}
+.component_right{text-align:right !important}

@@ -1,0 +1,25 @@
+@charset "utf-8";
+/************************************************************************
+ * filename : myMovieList.css
+ * description : movieBookPop.jsp
+ * date : 2019.01.04
+************************************************************************/
+.myMovieList {min-width:100%; max-width:100%; min-height:800px; position:relative;}
+.myMovieList .contentsWrap {padding-top:0px; height:100%;}
+.myMovieList .contentsWrap .contents {position:relative; margin-left:15%; margin-right:15%; padding-bottom:100px;} 
+.myMovieList .contentsWrap .contents .cont_header {text-align:left; padding-bottom:100px; } 
+.myMovieList .contentsWrap .contents .cont_header p {margin-top:45px;}
+.myMovieList .contentsWrap .contents .cont_footer {text-align:left; border-bottom:1px solid #717171;}
+.myMovieList .contentsWrap .contents .total_wrap_List {width:100%; height:100%; overflow:hidden;}
+.myMovieList .contentsWrap .contents .total_wrap_List .total_wrap {width:100%; float:left;}
+.myMovieList .contentsWrap .contents .total_wrap_List .total_wrap .total_table {width:100%; padding:0 0 0 15px; border-bottom:1px solid #717171;}
+.myMovieList .contentsWrap .contents .total_wrap_List .total_wrap .total_table .txt_thRed {color:#cdc197; text-align:left; padding:10px 0;}
+.myMovieList .contentsWrap .contents .total_wrap_List .total_wrap .total_table .txt_tdGrey {color:#a7a9ac; text-align:left;}
+.myMovieList .contentsWrap .contents .total_wrap_List .total_wrap .total_table .txt_tdWhite {text-align:left; vertical-align:top;}
+.myMovieList .contentsWrap .contents .total_wrap_List .total_wrap .total_table .status_td {text-align:center; vertical-align:middle; border-left:1px solid #333;}
+.myMovieList .contentsWrap .contents .total_wrap_List .total_wrap .total_table .img_div {width:100%; height:100%}
+.myMovieList .contentsWrap .contents .total_wrap_List .total_wrap .total_table .btn_Cancel {width:60%; line-height:3; border:none; background-color:#333 !important; color:#fff; cursor:pointer;}
+.myMovieList .contentsWrap .contents .total_wrap_List .total_wrap .total_table .span_canceled {display:inline-block; width:60%; line-height:3; border:1px solid #333; background-color:#fff !important;}
+.myMovieList .contentsWrap .contents .div_morePage {width:100%; padding-top:40px; text-align:center;}
+.myMovieList .contentsWrap .contents .div_morePage .morePage {width:61%; display:inline-block;}
+.myMovieList .contentsWrap .contents .div_morePage .morePage .btn_morePage {display:block; color:#666; width:100%; height:45px; line-height:45px; text-align:center; font-size:18px; background-color:#f9f9f9; border:none;}
