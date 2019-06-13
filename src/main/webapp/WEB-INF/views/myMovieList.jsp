@@ -35,10 +35,6 @@
 		</div>
 	</div>
 	<!-- 로딩바 및 이미지 -->
-	<div id="Progress_Loading">
-		<img src="../images/Progress_Loading.gif"/>
-	</div>
-	<!-- 로딩바 및 이미지 -->
 	<%@include file="cmn/progress_loading.jsp"%>
 	<%@include file="cmn/footer.jsp"%>
 </body>

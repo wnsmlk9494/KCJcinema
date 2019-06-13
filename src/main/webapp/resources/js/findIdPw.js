@@ -45,6 +45,7 @@ $(document).ready(function(){
 	$("#sMberTel").keypress(function(event){if (event.which && (event.which <= 47 || event.which >= 58) && event.which != 8){event.preventDefault();}});
 })
 
+//아이디 찾기
 function fn_idSearch(){
 	//유효성 검사
 	var mberName = $("#mberName").val();
@@ -83,12 +84,12 @@ function fn_idSearch(){
 				//check=0 -> check=1(hide)로 변경. 로그인 누르면 check=0(show)
 				fn_goLogin();
         	}else if(data.code == "none") {
-        		alert("가입된 아이디가 없습니다.");
-        	}
+        		alert("회원 정보를 다시 확인해주세요.");        	}
         }
     });
 }
 
+//비밀번호 찾기
 function fn_pwSearch(){
 	//아래 4가지를 본인인증 수단으로 사용
 	var sMberId = $("#sMberId").val();
@@ -120,18 +121,78 @@ function fn_pwSearch(){
 	
 	//<form></form>태그 내부 id값들을 나열해주기 때문에 data에 params 변수만 넣으면 됨
 	var params = $("#pwSearch").serialize();
+	alert("0번");
+	
 	$.ajax({
         type : 'POST',
         url : '/pwSearch.do',
         data : params,
         dataType : 'JSON',
+        error:function(request,status,error){
+        	alert("code:"+request.status+"@@@message:"+request.responseText+"@@@error:"+error);
+        },
         success : function(data){//반환받은 json데이터. json:[{key:data}, {key:data}]형식
+        	alert("1번");
         	if(data.code != "none") {
-        		//data.code는 컨트롤러에서 model.addAttribute로 code이름에 mberId를 담았다.
-        		post_to_url('/modifyPW.do', {mberId:data.code});
+        		alert("2번");
+        		//회원 정보 일치 시 비밀번호 수정
+        		$.ajax({
+        	        type : 'POST',
+        	        url : '/modifyPW.do',
+        	        data : {mberId:data.code},
+        	        dataType : 'html',
+        	        success : function(modifyPage){
+        	        	alert("3번");
+        	        	$("#popupFindAct").html(modifyPage);
+        	        }
+        	    });
         	}else if(data.code == "none") {
-        		alert("가입된 정보가 없습니다.");
+        		alert("회원 정보를 다시 확인해주세요.");
         	}
+        }
+    });
+}
+
+//비밀번호 수정
+function fn_modifyPw(){
+	//필수 입력값 검사
+	var mberPwd = $("#mberPwd").val();
+	var mberPwdCheck= $("#mberPwdCheck").val();
+	if(mberPwd == ""){alert("새로운 비밀번호를 입력해주세요."); return;}
+	if(mberPwdCheck == ""){alert("새로운 비밀번호 확인을 입력하세요."); return;}
+	
+	//비밀번호 유효성 검사.
+	//영문, 특수문자, 숫자가 무조건 포함되는 조합으로 10자~20자 가능
+	var pwd = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{10,20}$/;
+	if(!fn_check(pwd, mberPwd, "비밀번호를 올바르게 작성해주세요.")){return;}
+	
+	//비밀번호와 비밀번호 확인란 일치 여부 검사
+	if(mberPwd != mberPwdCheck){ alert("비밀번호가 일치하지 않습니다."); return;}
+	
+	//RSA 패스워드 암호화
+	var mberPwd = $("#mberPwd").val();
+	var rsa = new RSAKey();
+	rsa.setPublic($("#RSAModulus").val(), $("#RSAExponent").val());
+	mberPwd = rsa.encrypt(mberPwd);
+	
+	//'비밀번호 찾기'로부터 전달받은 유저 아이디 값 
+	var mberId = $("#mberId").val();
+	
+	$.ajax({
+        type : 'POST',
+        url : '/modifyPWUpdate.do',
+        data : {mberId:mberId, mberPwd:mberPwd},
+        dataType : 'JSON',
+        success : function(data){
+        	if(data.code == "success") {
+				alert("비밀번호가 성공적으로 변경되었습니다.");
+				close();
+				//check=0 -> check=1(hide)로 변경. 로그인 누르면 check=0(show)
+				fn_goLogin();
+	    	}else{
+	    		alert("비밀번호 변경 처리에 오류가 발생하였습니다.");
+	    		location.reload();
+	    	}
         }
     });
 }

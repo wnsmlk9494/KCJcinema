@@ -15,7 +15,7 @@
 	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; list-style:none; text-decoration:none;
 }
 
-#Progress_Loading{position:absolute; left:50%; top:50%; background:#ffffff;}
+#Progress_Loading{position:absolute; left:50%; top:50%; background:#ffffff; z-index:1;}
 
 html, body {height:100%; width:100%;}
 

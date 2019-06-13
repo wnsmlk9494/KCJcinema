@@ -290,7 +290,7 @@
 												KCJ CINEMA, 서울(수락)
 											</td>
 											<td>
-												000-00-00000
+												123-45-67890
 											</td>
 										</tr>
 										<tr>
@@ -298,7 +298,7 @@
 												www.kcjcinema.com
 											</td>
 											<td>
-												00-0000-0000
+												02-1234-5678
 											</td>
 										</tr>
 									</table>
@@ -308,8 +308,8 @@
 								<div style="width:100%; height:100%;">
 									<table style="width:100%; height:100%; text-align:left; padding-bottom:5px; color:#fff !important;">
 										<tr>
-											<td id="bookNum">
-												* 예매번호 : T201902170101000
+											<td id="txt_bookNum">
+<!-- 												* 예매번호 : T201902170101000 -->
 											</td>
 										<tr>
 											<td id="txt_movieName">

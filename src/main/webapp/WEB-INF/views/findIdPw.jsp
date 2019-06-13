@@ -12,7 +12,7 @@
 <title>아이디/비밀번호 찾기</title>
 </head>
 <body>
-	<div class="popupFindId" id="dddd">
+	<div class="popupFindAct" id="popupFindAct">
 	<input type="hidden" id="distincCode" name="distincCode" value="${distincCode}"/>
 		<ul class="findId">
 			<li class="selectedId" id="id">

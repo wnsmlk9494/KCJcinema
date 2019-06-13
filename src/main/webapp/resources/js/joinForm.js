@@ -221,7 +221,6 @@ function fn_checkBirth(what, message){
 	var nowDate = new Date();
 	var nowYear = parseInt(nowDate.getFullYear());
 	
-	alert(nowYear);
 	if(nowYear >= year && year > 1900 && dt.getMonth()+1 == month && dt.getDate() == date && what.length == 8){
 		return true;
 	}else{

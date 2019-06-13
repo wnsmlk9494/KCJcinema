@@ -1,15 +1,21 @@
 var hidden_morePage = "1";
+
+//더보기 선택시 id="span_fillStar"+번호값 추가로 늘어나게 저장
+var start_span_fillStar = 0;
+
 $(document).ready(function(){
-	fn_showingMovie_movieList(hidden_morePage);
+	fn_showingMovie_movieList(hidden_morePage, start_span_fillStar);
 	
 	$("#moreList").click(function(){
+		//페이지수 1씩 증가
 		hidden_morePage = String(parseInt(hidden_morePage) + 1);
-		fn_showingMovie_movieList(hidden_morePage);
+		
+		fn_showingMovie_movieList(hidden_morePage, start_span_fillStar);
 	})
 })
 
 //showingMovie 영화 불러오기
-function fn_showingMovie_movieList(pageValue){
+function fn_showingMovie_movieList(pageValue, fillStar){
 	$.ajax({	
 		type : 'GET',
 		url : '/movieList.do',
@@ -17,15 +23,16 @@ function fn_showingMovie_movieList(pageValue){
 		datatype : 'JSON',
 		cache : false,
 		success : function(data){
-			//top.jsp의 SHOWING_MOVIE의 CSS를 수정 (class="active")
+			//top.jsp의 BOX_OFFICE의 CSS를 수정 (class="active")
 			var showingMovie = document.getElementById('showingMovie');
 			soonMovie.className = 'normal';
+			showingMovie.className = 'normal';
 			showingMovie.className = 'normal active';
-			boxOffice.className = 'normal';		
 			
 			var subComment = JSON.parse(data);
 			//영화 리스트 조회
 			for(var i=0; i<subComment.movieListStringJson.length; i++){
+				fillStar++;
 				$("#ul_showingMovieList").append(
 					'<li class="movie_wrap">'+
 						'<div class="movieImage_wrap">'+
@@ -34,6 +41,15 @@ function fn_showingMovie_movieList(pageValue){
 							'</div>'+
 						'</div>'+
 						'<div class="movieInfo_wrap">'+
+							'<div class="movieScore">'+
+								'<span class="avgScore">'+
+									'<span>평점 </span>'+ 
+									'<span name="averageScore_015411">'+subComment.movieListStringJson[i].movieScore+'</span>'+
+								'</span>'+
+								'<span class="avgStar">'+
+									'<span class="fillStar" id="span_fillStar'+fillStar+'"></span>'+
+								'</span>'+
+							'</div>'+
 							'<div class="movieInfo">'+
 								'<h3 class="movieTitle">'+
 									'<span class="film_rate age_'+subComment.movieListStringJson[i].movieAge+'">'+subComment.movieListStringJson[i].movieName+'</span>'+subComment.movieListStringJson[i].movieName+
@@ -48,8 +64,25 @@ function fn_showingMovie_movieList(pageValue){
 						'</div>'+
 					'</li>'
 				);
+				
+				//별점을 정수로 조회하여 맥시멈점수를 비교해서 색칠
+				//starOn:색칠별, starOff:색칠x별
+				var movieScore = Math.floor(subComment.movieListStringJson[i].movieScore);
+				var starOn = movieScore;
+				var starOff = 5 - movieScore;
+				for(s=1; s<=starOn; s++){
+					$("#span_fillStar"+fillStar).append('<img src="images/star_mid_on.png"/>');
+				}
+				if(starOff != 0){
+					for(h=1; h<=starOff; h++){
+						$("#span_fillStar"+fillStar).append('<img src="images/star_mid_off.png"/>');
+					}	
+				}
 			}
-		
+			
+			//더보기 선택시 id="span_fillStar"+번호값 추가로 늘어나게 저장
+			start_span_fillStar = fillStar;
+			
 			//총페이지가 포함된 구간이면 더보기 버튼 삭제
 			if(subComment.endPageNum == subComment.totalPageNum){
 				$("#div_morePage").html("");

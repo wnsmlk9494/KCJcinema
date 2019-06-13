@@ -792,7 +792,7 @@ public class movieController {
 		
 		// 실질적으로 JSP에 필요한 정보
 		model.addAttribute("totalPageNum", totalPageNum);
-		model.addAttribute("endCountNum", endCountNum);
+		model.addAttribute("endPageNum", endPageNum);
 		model.addAttribute("myMovieListStringJson", myMovieListStringJson);
 		
 		return "cmn/return_MyMovieList_Json";

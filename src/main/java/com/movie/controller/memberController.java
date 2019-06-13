@@ -257,7 +257,7 @@ public class memberController {
 	}
 	
 	//PW찾기 이벤트 (ID찾기와 같은 작업)
-	@RequestMapping(value = "/pwSearch.do", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/pwSearch.do", method = RequestMethod.POST)
 	public String pwSearch(MemberDTO memberDTO, Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		
 		logger.info("Welcome /pwSearch.do !!!!!");
@@ -316,8 +316,6 @@ public class memberController {
 		
 		//RSA 비밀키로 복호화
 		mberPwd = RSAutil.decryptRsa(privateKey, mberPwd);
-		
-		logger.info("복화화된 mberPwd === "+mberPwd);
 		
 		//클라이언트 요청 패스워드 SHA-256 으로 SALT(임의의 문자열)를 이용해 암호화
 		String salt = SHA256util.generateSalt();

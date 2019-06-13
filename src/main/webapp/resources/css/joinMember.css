@@ -118,7 +118,7 @@ media all body, input, textarea, select, button, table{color:#555; line-height:2
 
 
 /* 회원가입 성공 - joinSuccess.jsp */
-.bodyWrap .contentsWrap .contents {position:relative; margin-left:15%; margin-right:15%; padding-bottom:80px;} 
+.bodyWrap .contentsWrap .contents {position:relative; margin-left:15%; margin-right:15%; padding-bottom:80px; height:100vh;} 
 .bodyWrap .contentsWrap .contents .cont_header {text-align:left;margin-bottom:100px;} 
 .bodyWrap .contentsWrap .contents .cont_header p {margin-top:45px;} 
 .cont_area .member_join .step_join {text-align:center;} 

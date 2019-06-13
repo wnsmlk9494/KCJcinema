@@ -110,15 +110,23 @@ function fn_moreMyBook(pageValue){
 				
 				//영화상영시간이 현재+20분보다 더 크면 취소가 가능함
 				if(bookStatus == "01" && strDate>dateAndTime){
-					$("#th_bookStatus"+subMyMovie.myMovieListStringJson[i].bookNum).append('<button type="button" class="btn_Cancel" id="btn_bookCancel'+subMyMovie.myMovieListStringJson[i].bookNum+'">취소신청</button>');
+					$("#th_bookStatus"+subMyMovie.myMovieListStringJson[i].bookNum).append(
+						'<button type="button" class="btn_Cancel" id="btn_bookCancel'+subMyMovie.myMovieListStringJson[i].bookNum+'">취소신청</button>'
+					);
 				}
 				//영화상영시간보다 현재+20분이 더 크면 취소할 수 없음
 				else if(bookStatus == "01" && strDate<dateAndTime){
-					$("#th_bookStatus"+subMyMovie.myMovieListStringJson[i].bookNum).append('<div id="btn_'+subMyMovie.myMovieListStringJson[i].bookNum+'"><span class="span_canceled">취소불가</span></div>');
+					$("#th_bookStatus"+subMyMovie.myMovieListStringJson[i].bookNum).append(
+						'<div id="btn_'+subMyMovie.myMovieListStringJson[i].bookNum+'">'+
+						'<span class="span_canceled">취소불가</span></div>'
+					);
 				}
 				//취소한 내역(bookStatus=02)이 있다면 취소완료를 표시 
 				else if(bookStatus== "02"){
-					$("#th_bookStatus"+subMyMovie.myMovieListStringJson[i].bookNum).append('<div id="btn_'+subMyMovie.myMovieListStringJson[i].bookNum+'"><span class="span_canceled">취소완료</span></div>');
+					$("#th_bookStatus"+subMyMovie.myMovieListStringJson[i].bookNum).append(
+						'<div id="btn_'+subMyMovie.myMovieListStringJson[i].bookNum+'">'+
+						'<span class="span_canceled">취소완료</span></div>'
+					);
 				}
 				
 				//예매수가 1매냐 2매냐에 따라 매수를 다르게 표기하기 위함
@@ -130,7 +138,7 @@ function fn_moreMyBook(pageValue){
 					$("#tr_payInfo"+subMyMovie.myMovieListStringJson[i].bookNum).append('<td class="txt_tdWhite">2매 - '+subMyMovie.myMovieListStringJson[i].totalAmt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원</td>');
 				}
 			}
-		
+			
 			//총페이지가 포함된 구간이면 더보기 버튼 삭제
 			if(subMyMovie.endPageNum == subMyMovie.totalPageNum){
 				$("#div_morePage").html("");

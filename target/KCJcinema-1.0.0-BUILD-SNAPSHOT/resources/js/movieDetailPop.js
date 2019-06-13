@@ -220,7 +220,7 @@ function fn_allComment(){
 			//ul을 제외한 나머지 제거
 			$("#ul_pageArea").html("");
 			
-			//<은 시작페이지가 1이상일때, <<은 시작페이지가 2이상일 때.
+			//'<, <<' 버튼은 시작페이지가 1이상일때.
 			if(subComment.startPageNum != "1"){
 				$("#ul_pageArea").append('<li><a href="javascript:void(0);" class="img_prev_next goFirst"></a></li>');
 				$("#ul_pageArea").append('<li><a href="javascript:void(0);" class="img_prev_next goPrev"></a></li>');
@@ -231,7 +231,7 @@ function fn_allComment(){
 				$("#ul_pageArea").append('<li><a href="javascript:void(0);" id="a_pageNum_'+i+'">'+i+'</a></li>');
 			}
 			
-			//총페이지가 포함된 구간이면 >, >>버튼 없음
+			//총페이지가 포함된 구간이면 '>, >>' 버튼 없음
 			if(subComment.endPageNum != subComment.totalPageNum){
 				$("#ul_pageArea").append('<li><a href="javascript:void(0);" class="img_prev_next goNext"></a></li>');
 				$("#ul_pageArea").append('<li><a href="javascript:void(0);" class="img_prev_next goLast"></a></li>');
@@ -248,7 +248,7 @@ function fn_allComment(){
 				fn_allComment();
 			})
 			
-			//제일 처음 구간으로 이동. 현페이지의 시작페이지 + 한 화면에 보여줄 페이지 수
+			//제일 처음 구간으로 이동.
 			$("a[class^='img_prev_next goFirst']").click(function(){
 				hidden_clickPage = 1;
 				fn_allComment();
@@ -288,7 +288,12 @@ function fn_updatelikeCount(gbn){
 		datatype : 'JSON',
 		cache : false,
 		async : false,
-		success : function(){
+		success : function(check_dis_like){
+			//공감을 눌렀지만 비공감이력이 있을 경우
+			if(check_dis_like == "like"){
+				alert("이미 비공감을 하셨습니다.");
+				return;
+			}
 			fn_allComment(); //해당 모든 댓글 불러오기
 		}
 	})
@@ -307,7 +312,12 @@ function fn_updatedislikeCount(gbn){
 		datatype : 'JSON',
 		cache : false,
 		async : false,
-		success : function(){
+		success : function(check_dis_like){
+			//비공감을 눌렀지만 공감이력이 있을 경우
+			if(check_dis_like == "dislike"){
+				alert("이미 비공감을 하셨습니다.");
+				return;
+			}
 			fn_allComment(); //해당 모든 댓글 불러오기
 		}
 	})
