@@ -121,7 +121,6 @@ function fn_pwSearch(){
 	
 	//<form></form>태그 내부 id값들을 나열해주기 때문에 data에 params 변수만 넣으면 됨
 	var params = $("#pwSearch").serialize();
-	alert("0번");
 	
 	$.ajax({
         type : 'POST',
@@ -132,9 +131,7 @@ function fn_pwSearch(){
         	alert("code:"+request.status+"@@@message:"+request.responseText+"@@@error:"+error);
         },
         success : function(data){//반환받은 json데이터. json:[{key:data}, {key:data}]형식
-        	alert("1번");
         	if(data.code != "none") {
-        		alert("2번");
         		//회원 정보 일치 시 비밀번호 수정
         		$.ajax({
         	        type : 'POST',
@@ -142,7 +139,6 @@ function fn_pwSearch(){
         	        data : {mberId:data.code},
         	        dataType : 'html',
         	        success : function(modifyPage){
-        	        	alert("3번");
         	        	$("#popupFindAct").html(modifyPage);
         	        }
         	    });

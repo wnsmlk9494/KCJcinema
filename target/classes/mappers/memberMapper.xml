@@ -76,7 +76,7 @@
 	<select id="selectPwSearch" resultType="MemberDTO">
   		SELECT EXISTS(
   			SELECT *
-		  	FROM tbl_cinemaMember
+		  	FROM tbl_cinemamember
 		  	WHERE mberId = #{mberId} 
 		  	AND mberName = #{mberName}
 		  	AND mberBirth = #{mberBirth}
