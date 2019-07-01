@@ -7,7 +7,7 @@
 
 /* 공통 */
 media all body, input, textarea, select, button, table{color:#555; line-height:24px; font-size:14px;}
-.bodyWrap {width:100%; position:relative;}
+.bodyWrap {width:100%; height:100%; position:relative;}
 .bodyWrap .contentsWrap .contents {position:relative; margin-left:15%; margin-right:15%; padding-bottom:80px;} 
 .bodyWrap .contentsWrap .contents .cont_header {text-align:left;margin-bottom:100px;} 
 .bodyWrap .contentsWrap .contents .cont_header p {margin-top:45px;}
