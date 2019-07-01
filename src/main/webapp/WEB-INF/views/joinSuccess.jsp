@@ -12,7 +12,7 @@
 </head>
 <body>
 	<%@include file="cmn/top.jsp"%>
-	<div class="bodyWrap">
+	<div class="bodyWrap success">
 	<div class="contentsWrap">
 		<div class="contents">
 			<div class="cont_header">

@@ -315,7 +315,7 @@ function fn_updatedislikeCount(gbn){
 		success : function(check_dis_like){
 			//비공감을 눌렀지만 공감이력이 있을 경우
 			if(check_dis_like == "dislike"){
-				alert("이미 비공감을 하셨습니다.");
+				alert("이미 공감을 하셨습니다.");
 				return;
 			}
 			fn_allComment(); //해당 모든 댓글 불러오기
