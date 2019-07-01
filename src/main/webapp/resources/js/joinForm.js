@@ -114,9 +114,41 @@ $(function() {
 })
 
 //id 중복검사용 함수
+//function fn_idCheck(){
+//	var mberId = $("#mberId").val();
+//	
+//	if(mberId == ""){
+//		alert("아이디를 입력해주세요.");
+//		return;
+//	}
+//	
+//	//아이디 유효성 검사
+//	var re = /^[0-9a-zA-Z]{5,10}$/;
+//	if(!fn_check(re, mberId, "아이디 형식을 올바르게 작성해주세요.")){return;}
+//	
+//	//code값을 반환하여 사용가능 아이디 문구 및 회원가입에 사용될 코드 1 사용
+//	var params = $("#form_join").serialize();
+//	$.ajax({
+//        type : 'POST',
+//        url : '/selectAlreadyIdCheck.do',
+//        data : params,
+//        dataType : 'JSON',
+//        //반환받은 json데이터. json:[{key:data}, {key:data}]형식
+//        success : function(alreadyJoin){
+//        	if(alreadyJoin == "1") {	
+//        		alert("중복된 아이디입니다.");
+//        		checkIdSuccess = "0";
+//        	}else{
+//        		alert("사용가능한 아이디입니다.");
+//        		checkIdSuccess = "1";
+//        	}
+//        }
+//    });
+//}
+
 function fn_idCheck(){
+	//아이디 입력 체크
 	var mberId = $("#mberId").val();
-	
 	if(mberId == ""){
 		alert("아이디를 입력해주세요.");
 		return;
@@ -126,24 +158,32 @@ function fn_idCheck(){
 	var re = /^[0-9a-zA-Z]{5,10}$/;
 	if(!fn_check(re, mberId, "아이디 형식을 올바르게 작성해주세요.")){return;}
 	
-	//code값을 반환하여 사용가능 아이디 문구 및 회원가입에 사용될 코드 1 사용
 	var params = $("#form_join").serialize();
-	$.ajax({
+	
+	//Promise(=비동기적 메소드를 동기적으로 처리하는 방법)
+	var promise = $.ajax({
         type : 'POST',
         url : '/selectAlreadyIdCheck.do',
         data : params,
-        dataType : 'JSON',
-        //반환받은 json데이터. json:[{key:data}, {key:data}]형식
-        success : function(alreadyJoin){
-        	if(alreadyJoin == "1") {	
-        		alert("중복된 아이디입니다.");
-        		checkIdSuccess = "0";
-        	}else{
-        		alert("사용가능한 아이디입니다.");
-        		checkIdSuccess = "1";
-        	}
-        }
+        dataType : 'JSON'
     });
+	
+	promise.then(successCheck);
+	promise.then().catch(failCheck);
+	
+	function successCheck(data){
+		if(data == "1") {	
+    		alert("중복된 아이디입니다.");
+    		checkIdSuccess = "0";
+    	}else{
+    		alert("사용가능한 아이디입니다.");
+    		checkIdSuccess = "1";
+    	}
+	}
+	
+	function failCheck(data){
+		console.log("에러가 발생했습니다.");
+	}
 }
 
 //이름, 휴대전화를 조회해 가입된 정보가 있는지 확인, 없다면 저장 함수 실행

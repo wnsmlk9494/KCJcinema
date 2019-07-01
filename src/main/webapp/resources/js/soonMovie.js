@@ -69,7 +69,7 @@ function fn_soonMovie_movieList(pageValue, p_dday){
 				//D-DAY를 구하기 위한 날짜 차이 구하는 함수 Date('0000-00-00')형식으로 계산해야 함
 				var calcDate = fn_parseDate(subComment.movieListStringJson[i].strDate, getToday);
 				$("#div_movieDate"+p_dday).prepend(subComment.movieListStringJson[i].strDate.substring(0,4)+'.'+subComment.movieListStringJson[i].strDate.substring(4,6)+'.'+subComment.movieListStringJson[i].strDate.substring(6,8));
-				$("#p_dday"+p_dday).append("D-"+calcDate);
+				$("#p_dday"+p_dday).append("D-"+Math.floor(calcDate));
 			}
 			
 			hidden_p_dday = p_dday;

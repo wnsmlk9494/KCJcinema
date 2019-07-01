@@ -77,7 +77,7 @@ function fn_boxOffice_movieList(pageValue, seq){
 					
 					var calcDate = fn_parseDate(subComment.movieListStringJson[i].strDate, getToday);
 					$("#div_movieDate"+seq).prepend(subComment.movieListStringJson[i].strDate.substring(0,4)+'.'+subComment.movieListStringJson[i].strDate.substring(4,6)+'.'+subComment.movieListStringJson[i].strDate.substring(6,8));
-					$("#p_dday"+seq).append("D-"+calcDate);
+					$("#p_dday"+seq).append("D-"+Math.floor(calcDate));
 					
 					seq++;
 					hidden_seq = seq;
