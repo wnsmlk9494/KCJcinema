@@ -67,8 +67,6 @@ function fn_boxOffice_movieList(pageValue, seq){
 					'</li>'
 				);
 				
-				alert(getToday);
-				alert(subComment.movieListStringJson[i].strDate);
 				//상영 예정작인 경우
 				if(getToday < subComment.movieListStringJson[i].strDate){
 					$("#div_dday_score"+seq).append(
