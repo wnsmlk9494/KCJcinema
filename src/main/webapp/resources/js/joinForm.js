@@ -147,43 +147,60 @@ $(function() {
 //}
 
 function fn_idCheck(){
-	//아이디 입력 체크
-	var mberId = $("#mberId").val();
-	if(mberId == ""){
-		alert("아이디를 입력해주세요.");
-		return;
+//	//아이디 입력 체크
+//	var mberId = $("#mberId").val();
+//	if(mberId == ""){
+//		alert("아이디를 입력해주세요.");
+//		return;
+//	}
+//	
+//	//아이디 유효성 검사
+//	var re = /^[0-9a-zA-Z]{5,10}$/;
+//	if(!fn_check(re, mberId, "아이디 형식을 올바르게 작성해주세요.")){return;}
+//	
+//	var params = $("#form_join").serialize();
+//	
+//	//Promise(=비동기적 메소드를 동기적으로 처리하는 방법)
+//	var promise = $.ajax({
+//        type : 'POST',
+//        url : '/selectAlreadyIdCheck.do',
+//        data : params,
+//        dataType : 'JSON'
+//    });
+//	
+//	promise.then(successCheck);
+//	promise.then().catch(failCheck);
+//	
+//	function successCheck(data){
+//		if(data == "1") {	
+//    		alert("중복된 아이디입니다.");
+//    		checkIdSuccess = "0";
+//    	}else{
+//    		alert("사용가능한 아이디입니다.");
+//    		checkIdSuccess = "1";
+//    	}
+//	}
+//	
+//	function failCheck(data){
+//		console.log("에러가 발생했습니다.");
+//	}
+	
+	
+	var usernames = ['kim', 'park', 'lee'];
+
+	function doSomething(index){
+	  // doSomething ...
+	  console.log(index);
+	}
+
+	for(var i=0; i<usernames.length; i++){
+	  document.getElementById(usernames[i]).onClick = function(){
+	    doSomething(i);
+	  }
 	}
 	
-	//아이디 유효성 검사
-	var re = /^[0-9a-zA-Z]{5,10}$/;
-	if(!fn_check(re, mberId, "아이디 형식을 올바르게 작성해주세요.")){return;}
 	
-	var params = $("#form_join").serialize();
 	
-	//Promise(=비동기적 메소드를 동기적으로 처리하는 방법)
-	var promise = $.ajax({
-        type : 'POST',
-        url : '/selectAlreadyIdCheck.do',
-        data : params,
-        dataType : 'JSON'
-    });
-	
-	promise.then(successCheck);
-	promise.then().catch(failCheck);
-	
-	function successCheck(data){
-		if(data == "1") {	
-    		alert("중복된 아이디입니다.");
-    		checkIdSuccess = "0";
-    	}else{
-    		alert("사용가능한 아이디입니다.");
-    		checkIdSuccess = "1";
-    	}
-	}
-	
-	function failCheck(data){
-		console.log("에러가 발생했습니다.");
-	}
 }
 
 //이름, 휴대전화를 조회해 가입된 정보가 있는지 확인, 없다면 저장 함수 실행

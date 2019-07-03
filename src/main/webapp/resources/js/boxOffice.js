@@ -7,7 +7,7 @@ var hidden_seq = 1;
 var date = new Date();
 var getYear = String(date.getFullYear());
 var getMonth = String(date.getMonth()+1); if(getMonth < 10){getMonth = "0"+getMonth};
-var getDate = String(date.getDate());
+var getDate = String(date.getDate()); if(getDate < 10){getDate = "0"+getDate};
 var getToday = getYear+getMonth+getDate;
 
 $(document).ready(function(){
@@ -67,6 +67,8 @@ function fn_boxOffice_movieList(pageValue, seq){
 					'</li>'
 				);
 				
+				alert(getToday);
+				alert(subComment.movieListStringJson[i].strDate);
 				//상영 예정작인 경우
 				if(getToday < subComment.movieListStringJson[i].strDate){
 					$("#div_dday_score"+seq).append(
